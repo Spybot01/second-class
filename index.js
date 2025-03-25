@@ -4,7 +4,7 @@ const app = express();
 const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
 const users = require("./model/userModels");
-
+const bodyParser = require("body-parser");
 
 
 const port = process.env.PORT || 5151;
@@ -12,6 +12,8 @@ const URI = process.env.uri
 require('ejs')
 app.set('view engine', 'ejs')
 app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: true}))
+
 
 mongoose.connect(URI)
   .then(() => {
@@ -189,7 +191,7 @@ app.post('/store', async(req, res)=> {
     const {name, email, age, password} = req.body
     const newUser = new users({ name, email,age, password})
     await newUser.save()
-    res.status(201).json({message: ' User added successfully'})
+    res.status(201).json({message: ' User added successfully', user: newUser})
    } catch(err) {
     console.log(err);
     res.status(500).json({message: err.message})    

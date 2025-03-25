@@ -1,3 +1,12 @@
 <%- include('../partials/navbar') %>
-<h1>hi</h1>
+<div>
+    <form action="/store" method="post">
+    <input id="name" type="text" name="name" required autofocus type="text" class="form-control shadow-none my-3" placeholder="name">
+    <input id="email" type="email" name="email" required class="form-control shadow-none my-3" placeholder="email">
+    <input id="age" type="number" name="age" class="form-control shadow-none my-3" placeholder="number">
+    <input id="password" type="password" name="password" required class="form-control shadow-none my-3" placeholder="password">
+    <button type="submit" class="my-4 btn btn-dark w-100 "> submit</button>
+</form>
+</div>
+
 <%- include('../partials/footer') %>
