@@ -3,7 +3,7 @@ const dotenv = require('dotenv').config();
 const sendMail= (req, res) => {
     // res.send('i wanna send mail');
     let transporter= nodemailer.createTransport({
-    service: 'gmail.com',
+    service: 'gmail',
     auth: {
       user: process.env.USER_G,
       pass: process.env.PASS_G,
