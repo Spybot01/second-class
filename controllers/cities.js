@@ -1,4 +1,6 @@
-const cities = ()=>{[
+
+
+const cities = (req, res)=>{[
     {
       "name": "New York",
       "population": 8419600,
