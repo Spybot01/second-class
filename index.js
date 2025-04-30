@@ -16,7 +16,7 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true}))
 
 
-mongoose.connect('URI')
+mongoose.connect(URI)
   .then(() => {
     console.log("lift off'Database neuralink connected succesfully");
   })
