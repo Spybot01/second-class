@@ -58,9 +58,7 @@ app.get('/signup', (req, res) => {
 app.get('/signin', (req, res)=>{
   res.render('pages/signin')
 })
-app.get('/api',(req, res)=>{
-  res.render('controllers/cities')
-})
+app.get('/api',cities)
 
 
 
