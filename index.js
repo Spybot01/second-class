@@ -53,12 +53,14 @@ app.get('/', (req, res) => {
   res.render('index' , {title: 'First EJS Page', name: 'Oluwafemi' })
 });
 app.get('/signup', (req, res) => {
-    
+    res.render('pages/signup')
 })
 app.get('/signin', (req, res)=>{
   res.render('pages/signin')
 })
-app.get('/api',cities)
+app.get('/api',(req, res)=>{
+  res.render('controllers/cities')
+})
 
 
 
