@@ -15,7 +15,7 @@ app.set('view engine', 'ejs')
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true}))
 
-
+//  app.use(express.urlencoded)
 mongoose.connect(URI)
   .then(() => {
     console.log("lift off'Database neuralink connected succesfully");
@@ -23,7 +23,9 @@ mongoose.connect(URI)
   .catch((err) => {
     console.log(err);
   });            
-app.post('/store', async(req, res)=> {
+app.post('/signup', async(req, res)=> {
+  console.log(req.body);
+  
   try { 
     const {name, email, age, password} = req.body
     const newUser = new users({ name, email,age, password})
@@ -33,6 +35,24 @@ app.post('/store', async(req, res)=> {
     console.log(err);
     res.status(500).json({message: err.message})    
    }
+})
+app.post('/signin', (req,res)=>{
+  const userData = {
+    email: req.body.email,
+    password: req.body.password
+  }
+  console.log(userData);
+  users.findOne({email: userData.email})
+  .then(user=> {
+    console.log(user);
+    if (user ==null){
+      return res.status(404).json('user not found')
+    }else{
+      return res.status(202).json(`welcome`)
+    }
+  })
+  
+  
 })
 
 app.get('/mail', Mailer)
@@ -73,6 +93,6 @@ app.get('/dashboard',(req,res) => {
   })
   .catch(err => console.log(err))
 })
-app.listen(port, () => {
+app.listen(port, '0.0.0.0',() => {
   console.log(`Server started at port ${port}`);
 });
