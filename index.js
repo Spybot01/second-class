@@ -69,8 +69,7 @@ app.get('/allusers', async (req, res) => {
 })
 
 app.get('/', (req, res) => {
-  // res.sendFile(__dirname + "/Public/index.html");
-  res.render('index' , {title: 'First EJS Page', name: 'Oluwafemi' })
+  res.render('index')
 });
 app.get('/signup', (req, res) => {
     res.render('pages/signup')
