@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const path = require('path');
+
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv").config();
 const mongoose = require('mongoose');
@@ -8,6 +10,8 @@ const bodyParser = require("body-parser");
 const Mailer = require ('./controllers/sendMail');
 const cities = require ('./controllers/cities');
 const FileUpload = require('./controllers/fileUpload'); 
+app.set('views', path.join(__dirname, 'views'));
+
 const port = process.env.PORT || 5151;
 const URI = process.env.uri
 require('ejs')
@@ -69,7 +73,8 @@ app.get('/allusers', async (req, res) => {
 })
 
 app.get('/', (req, res) => {
-  res.render('index')
+  res.sendFile(__dirname + "/Public/index.html");
+  res.render('index' , {title: 'First EJS Page', name: 'Oluwafemi' })
 });
 app.get('/signup', (req, res) => {
     res.render('pages/signup')
@@ -92,6 +97,6 @@ app.get('/dashboard',(req,res) => {
   })
   .catch(err => console.log(err))
 })
-app.listen(port, '0.0.0.0',() => {
+app.listen(port, () => {
   console.log(`Server started at port ${port}`);
 });
